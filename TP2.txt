@@ -1,0 +1,88 @@
+Exercice 1/
+
+	a)	
+
+(A OR B OR NOT(C) OR D)
+AND
+(NOT(B) OR C)
+AND
+(NOT (A) OR NOT (D)) 
+
+Format Dimacs (http://people.sc.fsu.edu/~jburkardt/data/cnf/cnf.html)
+
+	b)
+
+(http://www.dwheeler.com/essays/minisat-user-guide.html)
+
+(A OR B OR NOT(C) OR D)
+AND
+(NOT(B) OR C)
+AND
+(NOT (A) OR NOT (D))
+
+(1 | 2 | -3 | 4) &
+(-2 | 3) &
+(-1 | -4)
+
+p cnf [NB_VARIABLES] [NB_CLAUSES] 
+
+Format pour utiliser minisat :
+
+	c un commentaire ici.
+	p cnf 4 3
+	1 2 -3 4 0
+	-2 3 0
+	-1 -4 0
+
+La formule est satisfaisable.
+
+	c)
+i) se référer à : ci.img
+
+ii) 
+
+	(NOT(T) OR S OR NOT(B) )
+	AND
+	(NOT(T) OR S )
+	AND
+	(NOT(T) OR NOT(R) OR NOT(M) OR B OR A )
+	AND
+	(NOT(R) OR NOT(T) )
+	AND
+	(S OR NOT(B) )
+	AND
+	(S OR NOT(R) OR NOT(M) OR B OR A )
+	AND
+	(S OR NOT(R) )
+
+iii)
+
+Correspondance entre les numéros des variables et leur significations.
+	T = 1
+	S = 2
+	A = 3
+	B = 4
+	R = 5
+	M = 6
+
+	./minisat ci.cnf [sortie_solution]
+
+	Lors de la première exécution, la formule est satisfaisable avec ce résultat : -1 -2 -3 -4 -5 -6 0
+	Ce qui correspond à l'affectation des valeurs correspondantes :
+	T = 0
+	S = 0
+	A = 0
+	B = 0
+	R = 0
+	M = 0
+
+	Pour avoir une autre solution il suffit d'ajouter le négatif de la solution trouvé en premier lieu en clause.
+	nouvelle clause :  1 2 3 4 5 6 0
+
+	On obtient bien une autre solution: -1 2 -3 -4 -5 -6 0
+	T = 0
+	S = 1
+	A = 0
+	B = 0
+	R = 0
+	M = 0
