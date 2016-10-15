@@ -31,7 +31,7 @@
 \begin{flushleft} \large
 \emph{Autheur:}\\
 Michaël \textsc{Gileta} \\
-Yohan \textsc{ROUX}
+Yohan \textsc{Roux}
 \end{flushleft}
 \end{minipage}
 ~
@@ -51,6 +51,84 @@ Kévin \textsc{Perrot}
 
 %----------------------------------------------------------------------------------------
 
+\section*{Exercice 1}
+\subsection*{Question a}
+(A OR B OR NOT(C) OR D) \\
+AND\\
+(NOT(B) OR C)\\
+AND\\
+(NOT (A) OR NOT (D))
 
+\subsection*{Question b}
+\subsubsection*{Conversion format intermédiaire}
+$( 1\| 2 \| -3 \| 4 )$\\
+\& \\
+$( -2 \| 3 )$\\
+\& \\
+$( -1 \| -4 )$
+\subsubsection*{Conversion format Minisat}
+p cnf 4 3\\
+1 2 -3 4 0\\B
+-2 3 0\\
+-1 -4 0
+\subsubsection*{Réponse Minisat}
+La formule est satisfaisable.
+
+\subsection*{Question c}
+\subsubsection*{i.}
+$\Phi = (\lnot t \rightarrow \lnot s) \rightarrow (((b \lor t) \rightarrow s) \land ((r \land m) \rightarrow (b \lor a))\land \lnot r)$ 
+\begin{enumerate}
+	\item $(t \lor \lnot s) \equiv (\lnot t \rightarrow \lnot s)$
+	\item $(b \lor t) \rightarrow s \equiv (\lnot b \land \lnot t) \lor s \equiv (s\lor \lnot b) \land (s \lor \lnot t)$
+	\item $(r \land m) \rightarrow (b \lor a) \equiv (\lnot r \lor \lnot m) \lor (b \lor a) \equiv (\lnot r \lor \lnot m \lor b \lor a)$
+\end{enumerate}
+$\Phi_2 = (t \lor \lnot s) \rightarrow ((s \lor \lnot b) \land (s \lor \lnot t) \land (\lnot r \lor \lnot m \lor b \lor a) \land \lnot r)$
+
+$= (\lnot t \land s) \lor ((s \lor \lnot b) \land (s\lor \lnot t) \land (\lnot r \lor \lnot m \lor b \lor a) \land \lnot r)$
+
+$= (\lnot t \lor s \lor \lnot b) \land (\lnot t \lor s) \land (\lnot t \lor \lnot r \lor \lnot m \lor b \lor a) \land (\lnot r \lor \lnot t) \land (s \lor \lnot b) \land (s \lor \lnot t) \land (s \lor \lnot r \lor \lnot m \lor b \lor a) \land (\lnot r \lor s)$
+
+$= (\lnot t \lor s \lor \lnot b) \land (\lnot t \lor s) \land (\lnot t \lor \lnot r \lor \lnot m \lor b \lor a) \land (\lnot r \lor \lnot t) \land (s \lor \lnot b) \land (s \lor \lnot r \lor \lnot m \lor b \lor a) \land (s \lor \lnot r)$
+
+\subsubsection*{ii.}
+(NOT(T) OR S OR NOT(B) ) \\
+AND \\
+(NOT(T) OR S ) \\
+AND \\
+(NOT(T) OR NOT(R) OR NOT(M) OR B OR A ) \\
+AND \\
+(NOT(R) OR NOT(T) ) \\
+AND \\
+(S OR NOT(B) ) \\
+AND \\
+(S OR NOT(R) OR NOT(M) OR B OR A ) \\
+AND \\
+(S OR NOT(R) )
+
+\subsubsection*{iii.}
+Correspondance entre les numéros des variables et leur significations. \\
+T = 1 \\
+S = 2 \\
+A = 3 \\
+B = 4 \\
+R = 5 \\
+M = 6 \\
+Lors de la première exécution, la formule est satisfaisable avec ce résultat : -1 -2 -3 -4 -5 -6 0
+Ce qui correspond à l'affectation des valeurs correspondantes : \\
+T = 0 \\
+S = 0 \\
+A = 0 \\
+B = 0 \\
+R = 0 \\
+M = 0 \\
+Pour avoir une autre solution il suffit d'ajouter le négatif de la solution trouvé en premier lieu en clause. \\
+Nouvelle clause :  1 2 3 4 5 6 0 \\
+On obtient bien une autre solution: -1 2 -3 -4 -5 -6 0 \\
+T = 0 \\
+S = 1 \\
+A = 0 \\
+B = 0 \\
+R = 0 \\
+M = 0 
 
 \end{document}
