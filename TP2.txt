@@ -86,3 +86,29 @@ Correspondance entre les numéros des variables et leur significations.
 	B = 0
 	R = 0
 	M = 0
+
+	d)
+Procedure pour déterminer si une formule est un tautologie :
+
+On admet Test :
+
+Test
+Entrée : un nombre binaire i et $\Phy$ une formule.
+Sortie : SAT si $\Phy$ est Satisfaisable avec i comme modèle
+		 INSAT sinon
+
+IsTautology
+Entrée : /phy une formule logique et nbVar le nombre de variable de $\Phy$
+Sortie : Vrai si $\Phy$ est une tautologie
+	 	 Faux sinon
+
+b = 2^NbVar -1;
+
+Pour i : 0 -> b
+	si ( Test( bytes(i),$\Phy$ ) ) == INSAT
+		Renvoi FAUX
+Renvoi Vrai
+
+	e)
+
+i)
