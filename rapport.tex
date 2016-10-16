@@ -131,4 +131,26 @@ B = 0 \\
 R = 0 \\
 M = 0 
 
+\subsection*{Question d}
+\begin{algorithm}[H]
+	Fonction Test \\
+	Entrée : un nombre binaire i et $\Phi$ une formule. \\
+	Sortie : SAT si $\Phi$ est Satisfaisable avec i comme modèle, INSAT sinon
+\end{algorithm}
+
+\begin{algorithm}[H]
+	Fonction IsTautology \\
+	Entrée : un nombre binaire i et $\Phi$ une formule. \\
+	Sortie : SAT si $\Phi$ est Satisfaisable avec i comme modèle, INSAT sinon \\
+	\Begin{
+		b = $2^{NbVar}-1$
+		\For{i : 0 $\rightarrow$ b}{
+			\eIf{Test(bytes(i), $\Phi$)} {
+				Retourne FAUX
+			}{}
+		}
+		Retourne Vrai
+	}
+\end{algorithm}
+
 \end{document}
