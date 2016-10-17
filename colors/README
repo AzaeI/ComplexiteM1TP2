@@ -1,0 +1,11 @@
+Compiler :
+
+javac Graph.java Arrete.java Colors.java Sommet.java
+
+Executé :
+
+java Graph nbSommets nbArretes arretes...
+
+Exemple :
+
+java Graph 4 5 1 2 2 3 3 4 1 3 2 4
