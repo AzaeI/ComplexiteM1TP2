@@ -112,3 +112,11 @@ Renvoi Vrai
 	e)
 
 i)
+	cf feuille papier 
+ii)
+	cf e.cnf
+iii)
+	si l'on fait croitre n, le nombre de clause augmente de façon exponentiel.
+
+exercice 2/
+
