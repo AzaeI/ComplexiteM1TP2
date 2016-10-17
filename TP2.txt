@@ -112,3 +112,42 @@ Renvoi Vrai
 	e)
 
 i)
+	cf feuille papier 
+ii)
+	cf e.cnf
+iii)
+	si l'on fait croitre n, le nombre de clause augmente de façon exponentiel.
+
+exercice 2/
+
+1)
+Soit une réduction polynomiale d'un problème 3-COL à SAT
+Un sommet peut prendre 3 valeurs possibles, 
+une par couleur soit RGB (Red, Green, Blue).
+Ces valeurs sont évalué à 1 si le sommet a cette couleur, 
+et à 0 sinon.
+
+Soit R1G1B1, le triplet de valeur pour le sommet 1.
+
+Pour chaque sommet, on obtient 4 clauses.
+
+(R1 o G1 o B1) E (!R1 o !G1) E (!R1 o !B1) E (!B1 o !G1)
+
+Ces 4 clauses sont pour chaque sommet appartenant au graph.
+
+Ensuite en fonction des arrêtes du graph, plusieurs clauses se froment.
+
+Pour une arrête entre le sommet 1 et 2.
+On génére les 3 clauses suivantes.
+
+(!R1 o !R2) E (!G1 o !G2) E (!B1 o !B2) 
+
+On génére donc ces 3 clauses pour chaque arrêtes du graphes.
+
+On obteint donc ;
+
+GrandE                        (Ri o Gi o Bi) E (!Ri o !Gi) E (!Ri o !Bi) E (!Bi o !Gi)
+i -> nbSommet
+
+GrandE                        (!Ri o !Rj) E (!Gi o !Gj) E (!Bi o !Bj) 
+i,j -> nbSommet
