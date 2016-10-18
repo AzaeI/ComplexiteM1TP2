@@ -68,7 +68,7 @@ $( -2 \| 3 )$\\
 $( -1 \| -4 )$
 \subsubsection*{Conversion format Minisat}
 p cnf 4 3\\
-1 2 -3 4 0\\B
+1 2 -3 4 0\\
 -2 3 0\\
 -1 -4 0
 \subsubsection*{Réponse Minisat}
@@ -106,31 +106,27 @@ AND \\
 (S OR NOT(R) )
 
 \subsubsection*{iii.}
-Correspondance entre les numéros des variables et leur significations. \\
-T = 1 \\
-S = 2 \\
-A = 3 \\
-B = 4 \\
-R = 5 \\
-M = 6 \\
-Lors de la première exécution, la formule est satisfaisable avec ce résultat : -1 -2 -3 -4 -5 -6 0
-Ce qui correspond à l'affectation des valeurs correspondantes : \\
-T = 0 \\
-S = 0 \\
-A = 0 \\
-B = 0 \\
-R = 0 \\
-M = 0 \\
-Pour avoir une autre solution il suffit d'ajouter le négatif de la solution trouvé en premier lieu en clause. \\
-Nouvelle clause :  1 2 3 4 5 6 0 \\
-On obtient bien une autre solution: -1 2 -3 -4 -5 -6 0 \\
-T = 0 \\
-S = 1 \\
-A = 0 \\
-B = 0 \\
-R = 0 \\
-M = 0 
+p cnf 6 8\\
+-1 2 -4 0\\
+-1 2 0\\
+-1-5 -6 4 3 0\\
+-5 -1 0\\
+2 -4 0
+2 -5 -6 4 3 0\\
+2 -5 0\\
 
+\noindent Correspondance entre les numéros des variables et leur significations. \\
+T = 1, S = 2, A = 3, B = 4, R = 5, M = 6 \\
+Lors de la première exécution, la formule est satisfaisable avec ce résultat : -1 -2 -3 -4 -5 -6 0 \\
+Ce qui correspond à l'affectation des valeurs correspondantes : \\
+T = 0, S = 0, A = 0, B = 0, R = 0, M = 0 \\
+
+\noindent Pour avoir une autre solution il suffit d'ajouter le négatif de la solution trouvé en premier lieu en clause. \\
+Nouvelle clause ajouté à la fin du fichier:  1 2 3 4 5 6 0 \\
+On obtient bien une autre solution: -1 2 -3 -4 -5 -6 0 \\
+T = 0, S = 1, A = 0, B = 0, R = 0, M = 0 
+
+\newpage
 \subsection*{Question d}
 \begin{algorithm}[H]
 	Fonction Test \\
@@ -153,4 +149,46 @@ M = 0
 	}
 \end{algorithm}
 
+\subsection*{Question e}
+\subsubsection*{i.}
+Un seul objet par tirroir : \\
+$\rightarrow$ Soit $C_{i,j}$ l'objet i ($1<i<n+1$) dans le tirroir j ($1 < j < n$) \\
+$\underset{i \rightarrow n+1}{\land} (\underset{j \rightarrow n}{\lor} C_{ij})$ \\
+
+\noindent Un tirroir ne peut avoir qu'un seul objet : \\
+$\underset{i \rightarrow n+1}{\land} (\underset{i \rightarrow n+1}{\lor} (C_{ij} \overset{k \rightarrow n+1}{\underset{i \neq k}{\land}} \lnot C_{kj})$ \\
+
+\subsubsection*{ii.}
+Test sur la valeur n=2, voir le fichier e.cnf
+
+\subsubsection*{iii.}
+Si l'on fait croitre n, le nombre de clause augmente de façon exponentiel.
+\newpage
+\section*{Exercice 2}
+\begin{enumerate}
+\item Soit une réduction polynomiale d'un problème 3-COL à SAT \\
+Un sommet peut prendre 3 valeurs possibles, une par couleur soit RGB (Red, Green, Blue). \\
+Ces valeurs sont évalué à 1 si le sommet a cette couleur, et à 0 sinon. \\
+Soit R1,G1,B1, le triplet de valeur pour le sommet 1. \\
+
+\noindent Pour chaque sommet, on obtient 4 clauses. \\
+(R1 $\lor$ G1 $\lor$ B1) $\land$ ($\lnot$R1 $\lor$ $\lnot$G1) $\land$ ($\lnot$R1 $\lor$ $\lnot$B1) $\land$ ($\lnot$B1 $\lor$ $\lnot$G1)\\
+Ces 4 clauses sont pour chaque sommet appartenant au graph.\\
+
+\noindent Ensuite en fonction des arrêtes du graph, plusieurs clauses se froment. \\
+Pour une arrête entre le sommet 1 et 2. On génére les 3 clauses suivantes. \\
+($\lnot$R1 $\lor$ $\lnot$R2) $\land$ ($\lnot$G1 $\lor$ $\lnot$G2) $\land$ ($\lnot$B1 $\lor$ $\lnot$B2)\\
+On génére donc ces 3 clauses pour chaque arrêtes du graphes. \\
+
+\noindent On obteint donc : \\
+$\underset{i \rightarrow nbSommet}{\land} (Ri \lor Gi \lor Bi) \land (\lnot Ri \lor \lnot Gi) \land (\lnot Ri \lor \lnot Bi) \land (\lnot Bi \lor \lnot Gi)$ \\
+$\underset{i,j \rightarrow nbSommet}{\land} (\lnot Ri \lor \lnot Rj) \land (\lnot Gi \lor \lnot Gj) \land (\lnot Bi \lor \lnot Bj) $
+\item Graph :\\
+\includegraphics[scale=0.5]{./graph.png}\\[1cm]
+\item Voir programme joint
+\item Voir programme joint
+\item Voir programme joint
+\item Quand on fait grandir la taille du graph, le nombre de clause vaut : \\4xNbSommets + 3xNbArretes, ce qui se fait rapidement. \\
+Mais le temps de résolution est de plus en plus long.
+\end{enumerate}
 \end{document}

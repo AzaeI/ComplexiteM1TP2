@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * Created by xawirses on 17/10/16.
+ * Created by Michael,Yohan on 17/10/16.
  */
 public class Graph {
     int nbSommets;
